@@ -16,6 +16,7 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
+    document.getElementById('userDiagram')?.removeAttribute('data-processed');  
     mermaid.contentLoaded();
   }, [diagramCode]);
 
@@ -31,9 +32,10 @@ export default function Home() {
       </div>
       <div style={{ flex: 1 }}>
         <h1>Generated Diagram</h1>
-        <div className="mermaid" style={{ backgroundColor: '#1e1e1e', padding: '1rem', borderRadius: '8px' }}>
-          {diagramCode}
-        </div>
+        <pre className="mermaid" id="userDiagram"
+            style={{ backgroundColor: '#1e1e1e', padding: '1rem', borderRadius: '8px' }}>
+          {"%%{init: {'theme':'dark'}}%%" + diagramCode}
+        </pre>
       </div>
     </div>
   );
